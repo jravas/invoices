@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+html,
+body,
+.root,
+.main {
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.t {
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+}
+.t--light {
+  font-weight: 300;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.t--alpha {
+  font-size: 36px;
+  line-height: 48px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.t--beta {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.t--gama {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.s--top--tny {
+  margin-top: 8px;
+}
+
+.s--bottom--tny {
+  margin-bottom: 8px;
+}
+
+.s--top--sml {
+  margin-top: 16px;
+}
+
+.s--bottom--sml {
+  margin-bottom: 16px;
+}
+
+.s--left--med {
+  margin-left: 24px;
+}
+
+.s--right--med {
+  margin-right: 24px;
+}
+
+.s--bottom--med {
+  margin-bottom: 24px;
+}
+
+.header {
+}
+
+.header--title {
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.filters {
+  padding: 16px 0;
+}
+
+.filter--items {
+}
+
+.main {
+  background: #fafafa;
+}
+
+.invoices {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.invoices--list {
+  margin-top: -8px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.invoices--overview {
+  padding-top: 8px;
+}
+
+.invoice {
+  font-family: "Quicksand", sans-serif;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.invoice::before {
+  content: "";
+  height: 100%;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+}
+
+.invoice--inactive::before {
+  background: #c4c4c4;
+}
+
+.invoice--active::before {
+  background: #00c800;
+}
+
+.invoice--footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoice p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.graph {
+  max-width: 100%;
+  min-height: 208px;
+  border-radius: 12px;
+  background: #fafafa;
 }
