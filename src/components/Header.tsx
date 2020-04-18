@@ -7,7 +7,7 @@ export const Header: SFC = () => {
   const [title, setTitle] = useState("");
   useEffect(() => {
     getTitle(pathname);
-  }, []);
+  });
 
   const getTitle = (pathname: string) => {
     switch (pathname) {

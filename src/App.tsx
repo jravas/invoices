@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
 import { AppRoute } from "const";
@@ -8,21 +8,8 @@ import { Invoices, Overview, Settings } from "views";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/invoices">
       <>
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav> */}
         <Header />
 
         {/* A <Switch> looks through its children <Route>s and
@@ -38,6 +25,19 @@ function App() {
             <Overview />
           </Route>
         </Switch>
+        <nav className="footer">
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/invoices">Invoices</Link>
+            </li>
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
+          </ul>
+        </nav>
       </>
     </Router>
   );
