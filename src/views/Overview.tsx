@@ -1,5 +1,5 @@
 import React from "react";
-import { Invoice } from "components";
+import { InvoiceItem } from "components";
 
 const invoices = [
   {
@@ -33,7 +33,7 @@ export const Overview = () => {
         <h1 className="overview-title t t--beta">Unpaid</h1>
         <div className="invoices invoices--list">
           {invoices.map((i) => (
-            <Invoice key={i.id} {...i} />
+            <InvoiceItem key={i.id} {...i} />
           ))}
         </div>
       </div>

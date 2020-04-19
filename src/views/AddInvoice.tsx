@@ -9,13 +9,12 @@ export const AddInvoice = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(name, price);
     dispatch(addInvoiceThunk({ name, price }));
   };
 
   return (
     <div className="main s--top--sml">
-      <form className="invoice-form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="form-control s--left--med s--right--med s--top--tny">
           <label>Name:</label>
           <input

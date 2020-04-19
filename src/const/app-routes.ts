@@ -1,6 +1,8 @@
 export enum AppRoute {
   Overview = "/",
   Invoices = "/invoices",
-  Settings = "/settings",
+  Account = "/account",
   AddInvoice = "/add-invoice",
+  Register = "/register",
+  Login = "/login",
 }

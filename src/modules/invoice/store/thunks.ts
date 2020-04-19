@@ -1,13 +1,15 @@
 import { Dispatch } from "redux";
 // import { Invoice } from "modules/invoice/store/types";
 import {
-  addInvoice,
+  addInvoiceRequest,
   invoiceRequest,
-  invoiceSucess,
+  invoiceSuccess,
   invoiceError,
+  addInvoiceSuccess,
 } from "modules/invoice/store/actions";
 import cuid from "cuid";
 import Firebase from "firebase-store/initial";
+import { Invoice } from "../models";
 
 interface NamePrice {
   name: string;
@@ -28,12 +30,16 @@ export const addInvoiceThunk = (invoice: NamePrice) => async (
     date,
   };
 
+  dispatch(addInvoiceRequest());
+
   const error = await firebase.invoices().doc(id).set(fullInvoice);
 
   if (error === undefined) {
-    dispatch(addInvoice(fullInvoice));
+    dispatch(addInvoiceSuccess(fullInvoice));
     return;
   }
+
+  console.log("handle invoice adding error", error);
 };
 
 export const getInvoicesThunk = () => async (
@@ -51,11 +57,11 @@ export const getInvoicesThunk = () => async (
     ...(document.data() as any),
   }));
 
-  console.log("doksi jes", docs);
+  const invoices: Invoice[] = docs;
 
   if (!docs) {
     dispatch(invoiceError("no snapshot"));
   }
 
-  dispatch(invoiceSucess(docs));
+  dispatch(invoiceSuccess(invoices));
 };

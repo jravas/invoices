@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "modules/invoice/store/store";
 
-import { Invoice, Filters } from "components";
+import { Invoice } from "modules/invoice/models/";
+import { InvoiceItem, Filters } from "components";
 
 import { useDispatch } from "react-redux";
 import { getInvoicesThunk } from "modules/invoice/store/thunks";
@@ -52,31 +54,48 @@ import { getInvoicesThunk } from "modules/invoice/store/thunks";
 //   },
 // ];
 
+enum InvoiceTabs {
+  All = "All",
+  Paid = "Paid",
+  Unpaid = "Unpaid",
+}
+const tabs = [InvoiceTabs.All, InvoiceTabs.Paid, InvoiceTabs.Unpaid];
+const initActive = InvoiceTabs.All;
 export const Invoices = () => {
   const dispatch = useDispatch();
   const { invoices, isLoading } = useSelector(
     (state: RootState) => state.invoices
   );
-  // const isLoading = useSelector((state: RootState) => state.);
 
   useEffect(() => {
-    // Update the document title using the browser API
     dispatch(getInvoicesThunk());
   }, [dispatch]);
-  console.log("invo", invoices, isLoading);
 
-  if (isLoading) {
-    console.log("loading");
-    return null;
-  }
-  return (
-    <div className="main">
-      <Filters></Filters>
+  const tabCallback = (tab: string) => {
+    console.log("active tab in parent", tab);
+  };
+
+  const renderInvoices = (invoices: Invoice[]) => {
+    if (isLoading) {
+      return null;
+    }
+    return (
       <div className="invoices invoices--list">
         {invoices.map((i) => (
-          <Invoice key={i.id} {...i} />
+          <InvoiceItem key={i.id} {...i} />
         ))}
       </div>
+    );
+  };
+
+  return (
+    <div className="main">
+      <Filters initActive={initActive} parentCallback={tabCallback} tabs={tabs}>
+        <Link className="filters--new-invoice" to="/add-invoice">
+          +
+        </Link>
+      </Filters>
+      {renderInvoices(invoices)}
     </div>
   );
 };

@@ -1,3 +1,3 @@
 export * from "./Header";
-export * from "./Invoice";
+export * from "./InvoiceItem";
 export * from "./Filters";

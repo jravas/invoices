@@ -15,8 +15,12 @@ var firebaseConfig = {
   appId: "1:576241264595:web:5ea395413189ba0de77126",
 };
 
+export type AuthError = firebase.auth.AuthError;
+export type AuthUser = firebase.User;
+
 class Firebase {
   firestore: firebase.firestore.Firestore;
+  public auth: firebase.auth.Auth;
 
   // private collection: firebase.firestore.CollectionReference;
 
@@ -25,7 +29,18 @@ class Firebase {
       firebase.initializeApp(firebaseConfig);
     }
     this.firestore = firebase.firestore();
+    this.auth = firebase.auth();
   }
   public invoices = () => this.firestore.collection("/invoices");
+
+  public registration = (email: string, password: string) =>
+    this.auth.createUserWithEmailAndPassword(email, password);
+
+  public login = (email: string, password: string) =>
+    this.auth.signInWithEmailAndPassword(email, password);
+
+  public logout = () => this.auth.signOut();
+
+  public onAuthStateChanged = () => this.auth.onAuthStateChanged;
 }
 export default Firebase;

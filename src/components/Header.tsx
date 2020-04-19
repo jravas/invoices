@@ -17,11 +17,17 @@ export const Header: SFC = () => {
       case AppRoute.Invoices:
         setTitle("Invoices");
         return;
-      case AppRoute.Settings:
-        setTitle("Settings");
+      case AppRoute.Account:
+        setTitle("Account");
         return;
       case AppRoute.AddInvoice:
         setTitle("New Invoice");
+        return;
+      case AppRoute.Register:
+        setTitle("Registration");
+        return;
+      case AppRoute.Login:
+        setTitle("Login");
         return;
       default:
         return;

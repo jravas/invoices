@@ -1,21 +1,32 @@
-import { InvoiceActions, GetInvoicesActions } from "./actionTypes";
-import { Invoice } from "./types";
+import { InvoiceActions } from "./actionTypes";
+import { Invoice } from "../models";
 
-export const addInvoice = (invoice: Invoice) => ({
-  type: InvoiceActions.AddInvoice,
-  payload: invoice,
+/** Add Actions*/
+export const addInvoiceRequest = () => ({
+  type: InvoiceActions.AddActions.AddInvoiceRequest,
 });
+
+export const addInvoiceSuccess = (invoices: Invoice) => ({
+  type: InvoiceActions.AddActions.AddInvoiceSuccess,
+  payload: invoices,
+});
+
+export const addInvoiceError = () => ({
+  type: InvoiceActions.AddActions.AddInvoiceError,
+});
+
+/** Get Actions */
 
 export const invoiceRequest = () => ({
-  type: GetInvoicesActions.InvoiceRequest,
+  type: InvoiceActions.GetActions.InvoiceRequest,
 });
 
-export const invoiceSucess = (invoices: Invoice[]) => ({
-  type: GetInvoicesActions.InvoiceSucess,
+export const invoiceSuccess = (invoices: Invoice[]) => ({
+  type: InvoiceActions.GetActions.InvoiceSuccess,
   payload: invoices,
 });
 
 export const invoiceError = (error: string) => ({
-  type: GetInvoicesActions.InvoiceError,
+  type: InvoiceActions.GetActions.InvoiceError,
   payload: error,
 });

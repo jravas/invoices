@@ -1,37 +1,53 @@
-import { Invoice } from "./types";
+import { Invoice } from "../models";
 
-export enum InvoiceActions {
-  AddInvoice = "ADD_INVOICE",
+enum AddActions {
+  AddInvoiceRequest = "ADD_INVOICE_REQUEST",
+  AddInvoiceSuccess = "ADD_INVOICE_SUCCESS",
+  AddInvoiceError = "ADD_INVOICE_ERROR",
 }
-
-export enum GetInvoicesActions {
+enum GetActions {
   InvoiceRequest = "INVOICES_REQUEST",
-  InvoiceSucess = "INVOICEs_SUCESS",
-  InvoiceError = "INVOICEs_ERROR",
+  InvoiceSuccess = "INVOICES_SUCCESS",
+  InvoiceError = "INVOICES_ERROR",
 }
+
+export const InvoiceActions = {
+  AddActions,
+  GetActions,
+};
+
+export type InvoiceActions = typeof InvoiceActions;
 
 interface InvoiceRequest {
-  type: typeof GetInvoicesActions.InvoiceRequest;
+  type: typeof InvoiceActions.GetActions.InvoiceRequest;
 }
 
-interface InvoiceSucess {
-  type: typeof GetInvoicesActions.InvoiceSucess;
+interface InvoiceSuccess {
+  type: typeof InvoiceActions.GetActions.InvoiceSuccess;
   payload: Invoice[];
 }
 
 interface InvoiceError {
-  type: typeof GetInvoicesActions.InvoiceError;
+  type: typeof InvoiceActions.GetActions.InvoiceError;
+  payload: string;
+}
+interface AddInvoiceRequest {
+  type: typeof InvoiceActions.AddActions.AddInvoiceRequest;
+}
+interface AddInvoiceSuccess {
+  type: typeof InvoiceActions.AddActions.AddInvoiceSuccess;
+  payload: Invoice;
+}
+interface AddInvoiceError {
+  type: typeof InvoiceActions.AddActions.AddInvoiceError;
   payload: string;
 }
 
-interface AddInvoiceAction {
-  type: typeof InvoiceActions.AddInvoice;
-  payload: Invoice;
-}
-
 export type InvoiceActionTypes =
-  | AddInvoiceAction
+  | AddInvoiceRequest
+  | AddInvoiceSuccess
+  | AddInvoiceError
   | InvoiceRequest
-  | InvoiceSucess
+  | InvoiceSuccess
   | InvoiceError;
 // export type InvoiceActionTypes = SendMessageAction | DeleteMessageAction

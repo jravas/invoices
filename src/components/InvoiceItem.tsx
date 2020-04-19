@@ -6,7 +6,7 @@ interface Props {
   date: number;
 }
 
-export const Invoice: SFC<Props> = ({ name, price, date }) => {
+export const InvoiceItem: SFC<Props> = ({ name, price, date }) => {
   const status = true;
   return (
     <div

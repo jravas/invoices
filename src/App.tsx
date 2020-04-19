@@ -4,7 +4,14 @@ import "./App.css";
 
 import { AppRoute } from "const";
 import { Header } from "components";
-import { Invoices, AddInvoice, Overview, Settings } from "views";
+import {
+  Invoices,
+  AddInvoice,
+  Overview,
+  Account,
+  Register,
+  Login,
+} from "views";
 
 function App() {
   return (
@@ -15,8 +22,14 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
         <Switch>
-          <Route path={AppRoute.Settings}>
-            <Settings />
+          <Route path={AppRoute.Register}>
+            <Register />
+          </Route>
+          <Route path={AppRoute.Login}>
+            <Login />
+          </Route>
+          <Route path={AppRoute.Account}>
+            <Account />
           </Route>
           <Route path={AppRoute.Invoices}>
             <Invoices />
@@ -37,7 +50,7 @@ function App() {
               <Link to="/invoices">Invoices</Link>
             </li>
             <li>
-              <Link to="/settings">Settings</Link>
+              <Link to="/account">Account</Link>
             </li>
           </ul>
         </nav>
