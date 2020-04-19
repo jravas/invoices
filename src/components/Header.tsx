@@ -20,6 +20,9 @@ export const Header: SFC = () => {
       case AppRoute.Settings:
         setTitle("Settings");
         return;
+      case AppRoute.AddInvoice:
+        setTitle("New Invoice");
+        return;
       default:
         return;
     }

@@ -4,11 +4,11 @@ import "./App.css";
 
 import { AppRoute } from "const";
 import { Header } from "components";
-import { Invoices, Overview, Settings } from "views";
+import { Invoices, AddInvoice, Overview, Settings } from "views";
 
 function App() {
   return (
-    <Router basename="/invoices">
+    <Router>
       <>
         <Header />
 
@@ -20,6 +20,9 @@ function App() {
           </Route>
           <Route path={AppRoute.Invoices}>
             <Invoices />
+          </Route>
+          <Route path={AppRoute.AddInvoice}>
+            <AddInvoice />
           </Route>
           <Route path={AppRoute.Overview}>
             <Overview />

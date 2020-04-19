@@ -5,22 +5,22 @@ const invoices = [
   {
     id: "00",
     name: "Water supply service",
-    price: "124,32",
-    date: "17.4.2020.",
+    price: 124.32,
+    date: 1587257882301,
     status: false,
   },
   {
     id: "01",
     name: "Internet service provider",
-    price: "168,27",
-    date: "15.4.2020.",
+    price: 168.27,
+    date: 1587257882301,
     status: false,
   },
   {
     id: "02",
     name: "Electricity service",
-    price: "245,12",
-    date: "12.4.2020.",
+    price: 245.12,
+    date: 1587257882301,
     status: false,
   },
 ];

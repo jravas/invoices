@@ -2,12 +2,12 @@ import React, { SFC } from "react";
 
 interface Props {
   name: string;
-  price: string;
-  date: string;
-  status: boolean;
+  price: number;
+  date: number;
 }
 
-export const Invoice: SFC<Props> = ({ name, price, date, status }) => {
+export const Invoice: SFC<Props> = ({ name, price, date }) => {
+  const status = true;
   return (
     <div
       className={`invoice s--left--med s--right--med s--top--tny s--bottom--tny ${
