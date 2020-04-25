@@ -1,66 +1,44 @@
 import { AuthUser } from "firebase-store/initial";
-enum Registration {
-  RegistrationRequest = "REGISTRATION_REQUEST",
-  RegistrationSuccess = "REGISTRATION_SUCCESS",
-  RegistrationError = "REGISTRATION_ERROR",
-}
-
-enum Login {
-  LoginRequest = "LOGIN_REQUEST",
-  LoginSuccess = "LOGIN_SUCCESS",
-  LoginError = "LOGIN_ERROR",
-}
 
 enum General {
+  RegistrationRequest = "REGISTRATION_REQUEST",
+  LoginRequest = "LOGIN_REQUEST",
   ClearReducers = "CLEAR_REDUCERS",
+  AuthStateChanges = "AUTH_STATE_CHANGED",
+  Error = "AUTH_ERROR",
 }
 
 export const AuthActions = {
-  Registration,
-  Login,
-  General,
+  ...General,
 };
 
 export type AuthActions = typeof AuthActions;
 
 interface RegistrationRequest {
-  type: typeof AuthActions.Registration.RegistrationRequest;
-}
-
-interface RegistrationSuccess {
-  type: typeof AuthActions.Registration.RegistrationSuccess;
-  payload: AuthUser;
-}
-
-interface RegistrationError {
-  type: typeof AuthActions.Registration.RegistrationError;
-  payload: string;
+  type: typeof AuthActions.RegistrationRequest;
 }
 
 interface LoginRequest {
-  type: typeof AuthActions.Login.LoginRequest;
+  type: typeof AuthActions.LoginRequest;
 }
 
-interface LoginSuccess {
-  type: typeof AuthActions.Login.LoginSuccess;
-  payload: AuthUser;
-}
-
-interface LoginError {
-  type: typeof AuthActions.Login.LoginError;
-  payload: string;
+interface AuthStateChanges {
+  type: typeof AuthActions.AuthStateChanges;
+  payload: AuthUser | null;
 }
 
 interface ClearReducers {
-  type: typeof AuthActions.General.ClearReducers;
+  type: typeof AuthActions.ClearReducers;
+}
+
+interface Error {
+  type: typeof AuthActions.Error;
+  payload: string;
 }
 
 export type AuthActionsActionTypes =
   | RegistrationRequest
-  | RegistrationSuccess
-  | RegistrationError
   | LoginRequest
-  | LoginSuccess
-  | LoginError
-  | ClearReducers;
-// export type InvoiceActionTypes = SendMessageAction | DeleteMessageAction
+  | AuthStateChanges
+  | ClearReducers
+  | Error;

@@ -31,13 +31,22 @@ class Firebase {
     this.firestore = firebase.firestore();
     this.auth = firebase.auth();
   }
+
+  public profiles = () => this.firestore.collection("/profiles");
+
+  public setProfile = (id: string) => this.profiles().doc(id).set({ id });
+
   public invoices = () => this.firestore.collection("/invoices");
+
+  public collections = () => this.firestore.collection("/collections");
 
   public registration = (email: string, password: string) =>
     this.auth.createUserWithEmailAndPassword(email, password);
 
   public login = (email: string, password: string) =>
-    this.auth.signInWithEmailAndPassword(email, password);
+    this.auth
+      .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .then(() => this.auth.signInWithEmailAndPassword(email, password));
 
   public logout = () => this.auth.signOut();
 

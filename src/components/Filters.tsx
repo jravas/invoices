@@ -13,13 +13,19 @@ export const Filters: SFC<Props> = ({
   parentCallback,
 }) => {
   const [activeTab, setActive] = useState(initActive);
+
+  console.log("activ in child", initActive);
+
   useEffect(() => {
-    parentCallback(initActive);
-  }, []);
+    console.log("child change", initActive);
+    setActive(initActive);
+  });
+
   const handleClick = (tab: string) => (e: React.MouseEvent) => {
     setActive(tab);
     parentCallback(tab);
   };
+
   return (
     <div className="filters">
       <div className="wrapper f f-center s--left--med s--right--med">

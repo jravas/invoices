@@ -1,35 +1,23 @@
 import { AuthActions } from "./actionTypes";
 import { AuthUser } from "firebase-store/initial";
 
-/** Registration Actions*/
 export const registrationRequest = () => ({
-  type: AuthActions.Registration.RegistrationRequest,
+  type: AuthActions.RegistrationRequest,
 });
 
-export const registrationSuccess = (data: AuthUser) => ({
-  type: AuthActions.Registration.RegistrationSuccess,
-  payload: data,
-});
-
-export const registrationError = (message: string) => ({
-  type: AuthActions.Registration.RegistrationError,
-  payload: message,
-});
-
-/** Login Actions */
 export const loginRequest = () => ({
-  type: AuthActions.Login.LoginRequest,
+  type: AuthActions.LoginRequest,
 });
 
-export const loginSuccess = (user: AuthUser) => ({
-  type: AuthActions.Login.LoginSuccess,
+export const authStateChanges = (user: AuthUser | null) => ({
+  type: AuthActions.AuthStateChanges,
   payload: user,
 });
 
-export const loginError = (message: string) => ({
-  type: AuthActions.Login.LoginError,
+export const error = (message: string) => ({
+  type: AuthActions.Error,
 });
 
 export const clearReducers = () => ({
-  type: AuthActions.General.ClearReducers,
+  type: AuthActions.ClearReducers,
 });

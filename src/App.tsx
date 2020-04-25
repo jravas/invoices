@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import "./App.css";
+import { initAuthListenr } from "modules/auth/store/thunks";
 
 import { AppRoute } from "const";
 import { Header } from "components";
@@ -14,6 +16,15 @@ import {
 } from "views";
 
 function App() {
+  const dispatch = useDispatch();
+
+  // useEffect(()=> {
+
+  // })
+  useEffect(() => {
+    dispatch(initAuthListenr());
+  }, []);
+
   return (
     <Router>
       <>

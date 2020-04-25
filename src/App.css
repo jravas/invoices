@@ -116,6 +116,7 @@ body,
 .filters--item--active {
   z-index: 1;
   margin-left: -16px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .filters--item--active + .filters--item {
@@ -151,7 +152,7 @@ body,
   left: 0;
   bottom: 0;
   z-index: 1;
-  transition: height 0.2s ease-in;
+  transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filters--item--active .filters--item--text::before {
@@ -273,7 +274,7 @@ body,
 }
 
 .form-control input {
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(145, 145, 145, 0.2);
   padding: 8px 16px;
   border-radius: 6px;
 }

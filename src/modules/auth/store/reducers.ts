@@ -18,30 +18,15 @@ export const authReducer = (
   action: AuthActionsActionTypes
 ) => {
   switch (action.type) {
-    case AuthActions.Registration.RegistrationRequest:
+    case AuthActions.RegistrationRequest:
       return { ...state, isLoading: true, error: undefined };
-    case AuthActions.Registration.RegistrationSuccess:
-      return {
-        ...state,
-        isLoading: false,
-        error: undefined,
-        user: action.payload,
-      };
-    case AuthActions.Registration.RegistrationError:
-      return { ...state, isLoading: false, error: action.payload };
-
-    case AuthActions.Login.LoginRequest:
+    case AuthActions.LoginRequest:
       return { ...state, isLoading: true, error: undefined };
-    case AuthActions.Login.LoginSuccess:
-      return {
-        ...state,
-        isLoading: false,
-        error: undefined,
-        user: action.payload,
-      };
-    case AuthActions.Login.LoginError:
+    case AuthActions.Error:
       return { ...state, isLoading: false, error: action.payload };
-    case AuthActions.General.ClearReducers:
+    case AuthActions.AuthStateChanges:
+      return { ...state, isLoading: false, user: action.payload };
+    case AuthActions.ClearReducers:
       return initialState;
 
     default:

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUserThunk, logoutUserThunk } from "modules/auth/store/thunks";
+import { loginUserThunk } from "modules/auth/store/thunks";
 
 export const Login = () => {
   const dispatch = useDispatch();
