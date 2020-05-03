@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUserThunk } from "modules/auth/store/thunks";
+import { FirebaseService, AuthError } from "modules/firebase";
 
 export const Register = () => {
-  const dispatch = useDispatch();
+  const authProvider = FirebaseService.AuthProvider;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(registerUserThunk(email, password));
+    await authProvider
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error: AuthError) => setError(error.message));
   };
   return (
     <div className="main">
@@ -40,6 +44,7 @@ export const Register = () => {
           value="Register"
         />
       </form>
+      {error && <p>{error}</p>}
     </div>
   );
 };

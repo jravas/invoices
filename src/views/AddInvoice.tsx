@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addInvoiceThunk } from "modules/invoice/store/thunks";
+import { useInvoicesServices, ClientInvoice } from "modules/invoices";
+import { useUserServices } from "modules/user";
 
 export const AddInvoice = () => {
-  const dispatch = useDispatch();
+  const [, { addInvoice }] = useInvoicesServices();
+  const [{ userData }] = useUserServices();
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState(1);
+  const [status, setStatus] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(addInvoiceThunk({ name, price }));
+    if (!userData || !userData.collections) {
+      return;
+    }
+    const date = new Date().getTime();
+    const invoice: ClientInvoice = {
+      name,
+      price,
+      date,
+      status,
+    };
+    addInvoice(invoice, userData.collections[0].id);
   };
 
   return (
@@ -37,6 +50,17 @@ export const AddInvoice = () => {
             className="s--top--tny"
             type="number"
             name="price"
+          />
+        </div>
+
+        <div className="form-control s--left--med s--right--med s--top--tny">
+          <label>Paid:</label>
+          <input
+            className="s--top--tny"
+            type="checkbox"
+            name="status"
+            checked={status}
+            onChange={() => setStatus(!status)}
           />
         </div>
         <input

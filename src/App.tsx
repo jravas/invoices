@@ -1,57 +1,21 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import "./App.css";
-import { initAuthListenr } from "modules/auth/store/thunks";
+import { useAuthListener } from "modules/user";
 
-import { AppRoute } from "const";
 import { Header } from "components";
-import {
-  Invoices,
-  AddInvoice,
-  Overview,
-  Account,
-  Register,
-  Login,
-} from "views";
+import { Routing } from "modules/routing";
 
 function App() {
-  const dispatch = useDispatch();
-
-  // useEffect(()=> {
-
-  // })
-  useEffect(() => {
-    dispatch(initAuthListenr());
-  }, []);
+  useAuthListener();
 
   return (
     <Router>
       <>
         <Header />
 
-        {/* A <Switch> looks through its children <Route>s and
-          renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path={AppRoute.Register}>
-            <Register />
-          </Route>
-          <Route path={AppRoute.Login}>
-            <Login />
-          </Route>
-          <Route path={AppRoute.Account}>
-            <Account />
-          </Route>
-          <Route path={AppRoute.Invoices}>
-            <Invoices />
-          </Route>
-          <Route path={AppRoute.AddInvoice}>
-            <AddInvoice />
-          </Route>
-          <Route path={AppRoute.Overview}>
-            <Overview />
-          </Route>
-        </Switch>
+        <Routing />
+
         <nav className="footer">
           <ul>
             <li>

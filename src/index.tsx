@@ -5,8 +5,10 @@ import "./index.css";
 import "normalize.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { configureStore } from "modules/redux-store";
 
-import store from "modules/invoice/store/store";
+const store = configureStore();
+// import store from "modules/invoice/store/store";
 
 ReactDOM.render(
   <React.StrictMode>

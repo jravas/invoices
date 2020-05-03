@@ -241,6 +241,9 @@ body,
   width: 100%;
   font-family: "Quicksand", sans-serif;
   background: #fff;
+  /* border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.04); */
 }
 
 .footer ul {

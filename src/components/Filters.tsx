@@ -14,12 +14,9 @@ export const Filters: SFC<Props> = ({
 }) => {
   const [activeTab, setActive] = useState(initActive);
 
-  console.log("activ in child", initActive);
-
   useEffect(() => {
-    console.log("child change", initActive);
     setActive(initActive);
-  });
+  }, [setActive, initActive]);
 
   const handleClick = (tab: string) => (e: React.MouseEvent) => {
     setActive(tab);

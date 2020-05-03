@@ -1,13 +1,12 @@
 import React, { SFC } from "react";
+import { ClientInvoice } from "modules/invoices";
 
-interface Props {
-  name: string;
-  price: number;
-  date: number;
-}
-
-export const InvoiceItem: SFC<Props> = ({ name, price, date }) => {
-  const status = true;
+export const InvoiceItem: SFC<ClientInvoice> = ({
+  name,
+  price,
+  date,
+  status,
+}) => {
   return (
     <div
       className={`invoice s--left--med s--right--med s--top--tny s--bottom--tny ${
