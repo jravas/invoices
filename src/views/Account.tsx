@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Filters } from "components";
+import { Filters, PeerConnector } from "components";
 import { Login, Register } from "./";
 import { useUserServices } from "modules/user";
 
@@ -47,6 +47,7 @@ export const Account = () => {
       {userData && (
         <div>
           <p>{userData.email}</p>
+          <PeerConnector />
         </div>
       )}
       <svg
